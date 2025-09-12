@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Finnhub_Secret_Key</key>
+	<string>d1s7jehr01qskg7s19c0</string>
+	<key>Finnhub_API_Key</key>
+	<string>d1s7jehr01qskg7s19agd1s7jehr01qskg7s19b0</string>
+	<key>AmazonBucket</key>
+	<string>https://youngappbucket.s3.us-east-2.amazonaws.com/</string>
+	<key>App_Name</key>
+	<string>YOUNG</string>
+	<key>App_Identifier</key>
+	<string></string>
+	<key>App_Store_ID</key>
+	<string></string>
+	<key>App_Store_Profile</key>
+	<string></string>
+	<key>AdHoc_Profile</key>
+	<string></string>
+	<key>Google_Services_Api_Key</key>
+	<string></string>
+	<key>isConsoleLogsEnable</key>
+	<true/>
+	<key>App_Environment</key>
+	<dict>
+		<key>Local</key>
+		<false/>
+		<key>QATesting</key>
+		<false/>
+		<key>BetaTesting</key>
+		<false/>
+		<key>Development</key>
+		<true/>
+		<key>Production</key>
+		<false/>
+	</dict>
+	<key>Local_Base_URL</key>
+	<string>http://192.168.1.48:8888</string>
+	<key>QATesting_Base_URL</key>
+	<string></string>
+	<key>BetaTesting_Base_URL</key>
+	<string></string>
+	<key>Development_Base_URL</key>
+	<string>https://theboom.app:8000</string>
+	<key>Production_Base_URL</key>
+	<string></string>
+	<key>Media_Load_Base_URL</key>
+	<string>https://youngappbucket.s3.us-east-2.amazonaws.com</string>
+	<key>Base_URL_Tail</key>
+	<string>/api/v1</string>
+	<key>Local_X_API_Key</key>
+	<string></string>
+	<key>QATesting_X_API_Key</key>
+	<string></string>
+	<key>BetaTesting_X_API_Key</key>
+	<string></string>
+	<key>Development_X_API_Key</key>
+	<string></string>
+	<key>Production_X_API_Key</key>
+	<string></string>
+</dict>
+</plist>

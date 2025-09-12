@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeFeedCell" customModule="Young" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="444" height="370"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="444" height="370"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="X3A-5C-YOu">
+                        <rect key="frame" x="0.0" y="118" width="444" height="184"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mask group" translatesAutoresizingMaskIntoConstraints="NO" id="AFo-bf-3oh">
+                                <rect key="frame" x="0.0" y="0.0" width="444" height="184"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feedOverlay" translatesAutoresizingMaskIntoConstraints="NO" id="28C-4S-jgd">
+                                <rect key="frame" x="0.0" y="0.0" width="444" height="184"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Members" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAB-2r-Wvy">
+                                <rect key="frame" x="10" y="164.66666666666669" width="404" height="14.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nextArrow" translatesAutoresizingMaskIntoConstraints="NO" id="RkS-md-aY7">
+                                <rect key="frame" x="419" y="167.66666666666669" width="15" height="8.3333333333333428"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8.4399999999999995" id="CQP-Kw-NZl"/>
+                                    <constraint firstAttribute="width" constant="15" id="fAM-Ia-IaA"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" name="#C5C6CC"/>
+                        <constraints>
+                            <constraint firstItem="RkS-md-aY7" firstAttribute="leading" secondItem="FAB-2r-Wvy" secondAttribute="trailing" constant="5" id="3n9-Ru-nDK"/>
+                            <constraint firstItem="FAB-2r-Wvy" firstAttribute="bottom" secondItem="28C-4S-jgd" secondAttribute="bottom" constant="-5" id="AoR-It-5tA"/>
+                            <constraint firstItem="RkS-md-aY7" firstAttribute="centerY" secondItem="FAB-2r-Wvy" secondAttribute="centerY" id="LG8-eY-qqi"/>
+                            <constraint firstItem="AFo-bf-3oh" firstAttribute="centerY" secondItem="X3A-5C-YOu" secondAttribute="centerY" id="Lyh-Y1-Sym"/>
+                            <constraint firstItem="28C-4S-jgd" firstAttribute="leading" secondItem="AFo-bf-3oh" secondAttribute="leading" id="O2c-7P-aQt"/>
+                            <constraint firstItem="RkS-md-aY7" firstAttribute="trailing" secondItem="28C-4S-jgd" secondAttribute="trailing" constant="-10" id="TWR-GH-i31"/>
+                            <constraint firstItem="FAB-2r-Wvy" firstAttribute="leading" secondItem="28C-4S-jgd" secondAttribute="leading" constant="10" id="XXv-HC-d2Z"/>
+                            <constraint firstItem="28C-4S-jgd" firstAttribute="centerY" secondItem="AFo-bf-3oh" secondAttribute="centerY" id="ZDU-NK-Hiq"/>
+                            <constraint firstItem="28C-4S-jgd" firstAttribute="centerX" secondItem="AFo-bf-3oh" secondAttribute="centerX" id="b11-yS-Rcx"/>
+                            <constraint firstItem="28C-4S-jgd" firstAttribute="top" secondItem="AFo-bf-3oh" secondAttribute="top" id="iwM-cI-XPl"/>
+                            <constraint firstItem="AFo-bf-3oh" firstAttribute="top" secondItem="X3A-5C-YOu" secondAttribute="top" id="nTz-1p-jse"/>
+                            <constraint firstItem="AFo-bf-3oh" firstAttribute="centerX" secondItem="X3A-5C-YOu" secondAttribute="centerX" id="uN0-Y7-vJG"/>
+                            <constraint firstItem="AFo-bf-3oh" firstAttribute="leading" secondItem="X3A-5C-YOu" secondAttribute="leading" id="zMo-ay-vmI"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="6"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="X3A-5C-YOu" secondAttribute="leading" id="3Sp-m7-d0F"/>
+                <constraint firstItem="X3A-5C-YOu" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="3j6-my-9DH"/>
+                <constraint firstItem="X3A-5C-YOu" firstAttribute="centerY" secondItem="ZTg-uK-7eu" secondAttribute="centerY" id="g8b-xU-lns"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="X3A-5C-YOu" secondAttribute="top" id="hcs-QK-ftJ"/>
+            </constraints>
+            <size key="customSize" width="444" height="370"/>
+            <connections>
+                <outlet property="profilePic" destination="AFo-bf-3oh" id="oyF-RS-Efp"/>
+                <outlet property="usernameLbl" destination="FAB-2r-Wvy" id="GON-qv-JzW"/>
+            </connections>
+            <point key="canvasLocation" x="282.44274809160305" y="101.40845070422536"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Mask group" width="332" height="200"/>
+        <image name="feedOverlay" width="164" height="140"/>
+        <image name="nextArrow" width="15.333333015441895" height="8.6666669845581055"/>
+        <namedColor name="#C5C6CC">
+            <color red="0.77254901960784317" green="0.77647058823529413" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

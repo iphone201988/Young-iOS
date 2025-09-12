@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AdsCell" customModule="Young" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="430" height="457"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="430" height="457"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="tmL-TT-GSX">
+                        <rect key="frame" x="8" y="118" width="414" height="271"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummyAds" translatesAutoresizingMaskIntoConstraints="NO" id="w5l-92-NJn">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="271"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="w5l-92-NJn" firstAttribute="leading" secondItem="tmL-TT-GSX" secondAttribute="leading" id="5Ip-QO-sxw"/>
+                            <constraint firstItem="w5l-92-NJn" firstAttribute="top" secondItem="tmL-TT-GSX" secondAttribute="top" id="6T0-pP-Cmv"/>
+                            <constraint firstItem="w5l-92-NJn" firstAttribute="centerX" secondItem="tmL-TT-GSX" secondAttribute="centerX" id="UtL-8c-uvY"/>
+                            <constraint firstItem="w5l-92-NJn" firstAttribute="centerY" secondItem="tmL-TT-GSX" secondAttribute="centerY" id="bZw-lz-8GA"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="tmL-TT-GSX" firstAttribute="centerY" secondItem="ZTg-uK-7eu" secondAttribute="centerY" id="6TD-PB-5nS"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="tmL-TT-GSX" secondAttribute="leading" constant="-8" id="UcU-4y-mwS"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="tmL-TT-GSX" secondAttribute="top" id="nsf-Mp-bU8"/>
+                <constraint firstItem="tmL-TT-GSX" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="var-Lt-2YT"/>
+            </constraints>
+            <size key="customSize" width="430" height="457"/>
+            <connections>
+                <outlet property="adsImage" destination="w5l-92-NJn" id="yyj-fK-DFl"/>
+            </connections>
+            <point key="canvasLocation" x="258.01526717557249" y="132.04225352112678"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="dummyAds" width="320" height="203"/>
+    </resources>
+</document>
