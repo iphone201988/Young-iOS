@@ -125,9 +125,11 @@ class VaultsRoomVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if selectedSavedOption == .vault {
-            socketIO.establishConnection(params: [:]) { [weak self] result in
-                self?.socketIO.socketIOEvents = self
+        if selectedSavedOption == .vault, !id.isEmpty {
+            self.socketIO.establishConnection(params: [:]) { [weak self] result in
+                self?.socketIO.joinVault(params: ["vaultId": self?.id ?? ""]) { success in
+                    self?.socketIO.socketIOEvents = self
+                }
             }
         }
     }

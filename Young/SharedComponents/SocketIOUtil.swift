@@ -55,6 +55,13 @@ class SocketIOUtil {
         }
     }
     
+    func joinVault(params: [String: Any], _ completion: @escaping (_ success: Bool) -> Void) {
+        guard let socket = manager?.defaultSocket else { return }
+        socket.emit( SocketEndpoints.joinVault.urlComponent(), params) {
+            completion(true)
+        }
+    }
+    
     func sendMessageInVault(params: [String: Any], _ completion: @escaping (_ success: Bool) -> Void) {
         guard let socket = manager?.defaultSocket else { return }
         socket.emit( SocketEndpoints.messageInVault.urlComponent(), params) {
@@ -265,6 +272,7 @@ enum SocketEndpoints: String, Codable, CaseIterable {
     case unspecified
     case messageInVault
     case vaultMessage
+    case joinVault
     
     func urlComponent() -> String {
         switch self {
@@ -284,6 +292,7 @@ enum SocketEndpoints: String, Codable, CaseIterable {
         case .unspecified: return ""
         case .messageInVault: return "messageInVault"
         case .vaultMessage: return "vaultMessage"
+        case .joinVault: return "joinVault"
         }
     }
 }
