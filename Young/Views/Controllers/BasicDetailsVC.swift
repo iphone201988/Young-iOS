@@ -1,7 +1,7 @@
 import UIKit
 import CountryPickerView
 
-class BasicDetailsVC: UIViewController {
+class BasicDetailsVC: UIViewController, UITextFieldDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var firstnameTF: UITextField!
@@ -38,6 +38,15 @@ class BasicDetailsVC: UIViewController {
         if let country = currentCountry {
             selectedPhoneCode = country.phoneCode
         }
+        
+        firstnameTF.delegate = self
+        lastnameTF.delegate = self
+        companyTF.delegate = self
+        
+        // 🔹 Capitalize first letters
+        firstnameTF.autocapitalizationType = .words
+        lastnameTF.autocapitalizationType = .words
+        companyTF.autocapitalizationType = .words
     }
     
     // MARK: IB Actions

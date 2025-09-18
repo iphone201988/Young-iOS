@@ -117,7 +117,11 @@ class EcosystemVC: UIViewController, UITextFieldDelegate {
             title: "Distance",
             state: (selectedFilterOption == "Distance") ? .on : .off
         ) { [weak self] _ in
-            self?.selectedFilterOption = "Distance"
+            if self?.selectedFilterOption == "Distance" {
+                self?.selectedFilterOption = ""
+            } else {
+                self?.selectedFilterOption = "Distance"
+            }
             self?.distance = true
             self?.byCustomers = false
             self?.byFollowers = false
@@ -130,7 +134,11 @@ class EcosystemVC: UIViewController, UITextFieldDelegate {
             title: "Number of Customers",
             state: (selectedFilterOption == "Number of Customers") ? .on : .off
         ) { [weak self] _ in
-            self?.selectedFilterOption = "Number of Customers"
+            if self?.selectedFilterOption == "Number of Customers" {
+                self?.selectedFilterOption = ""
+            } else {
+                self?.selectedFilterOption = "Number of Customers"
+            }
             self?.distance = false
             self?.byCustomers = true
             self?.byFollowers = false
@@ -143,7 +151,11 @@ class EcosystemVC: UIViewController, UITextFieldDelegate {
             title: "Number of Followers",
             state: (selectedFilterOption == "Number of Followers") ? .on : .off
         ) { [weak self] _ in
-            self?.selectedFilterOption = "Number of Followers"
+            if self?.selectedFilterOption == "Number of Followers" {
+                self?.selectedFilterOption = ""
+            } else {
+                self?.selectedFilterOption = "Number of Followers"
+            }
             self?.distance = false
             self?.byCustomers = false
             self?.byFollowers = true
@@ -159,11 +171,17 @@ class EcosystemVC: UIViewController, UITextFieldDelegate {
                 title: title,
                 state: (selectedFilterOption == title) ? .on : .off
             ) { [weak self] _ in
-                self?.selectedFilterOption = title
+                if self?.selectedFilterOption == title {
+                    self?.selectedFilterOption = ""
+                    self?.rating = 0
+                } else {
+                    self?.selectedFilterOption = title
+                    self?.rating = star
+                }
                 self?.distance = false
                 self?.byCustomers = false
                 self?.byFollowers = true
-                self?.rating = star
+                //self?.rating = star
                 self?.updateFilterMenu()
                 self?.getUsers(isResetPageNo: true)
             }

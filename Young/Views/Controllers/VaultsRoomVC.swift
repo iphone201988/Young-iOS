@@ -209,9 +209,12 @@ class VaultsRoomVC: UIViewController {
                 params["chatId"] = chatId
             }
             
-            //viewModel.addComment(params: params, event: selectedSavedOption)
-            socketIO.sendMessageInVault(params: params) { [weak self] success in
-                self?.commentTV.text = ""
+            if selectedSavedOption == .vault {
+                socketIO.sendMessageInVault(params: params) { [weak self] success in
+                    self?.commentTV.text = ""
+                }
+            } else {
+                viewModel.addComment(params: params, event: selectedSavedOption)
             }
         }
     }

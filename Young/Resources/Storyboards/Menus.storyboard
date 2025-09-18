@@ -1042,6 +1042,23 @@
                                                                             </label>
                                                                         </subviews>
                                                                     </stackView>
+                                                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="dll-45-Hdw">
+                                                                        <rect key="frame" x="0.0" y="25.333333333333371" width="345" height="0.0"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fairness Forward" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfJ-LT-u89">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="171.66666666666666" height="0.0"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                                                <color key="textColor" name="#7030A0"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JON-Ut-xi2">
+                                                                                <rect key="frame" x="173.66666666666663" y="0.0" width="171.33333333333337" height="0.0"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                <color key="textColor" name="#71727A"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cQP-bV-nct">
                                                                         <rect key="frame" x="0.0" y="31.333333333333371" width="345" height="19.333333333333329"/>
                                                                         <subviews>
@@ -3321,6 +3338,8 @@ pixels</string>
                         <outlet property="editMainView" destination="cpZ-XW-rCp" id="dZF-6l-JbH"/>
                         <outlet property="editTableView" destination="N97-b1-vcG" id="CEJ-2U-R12"/>
                         <outlet property="expLbl" destination="2SN-Nr-50k" id="ovp-Sd-w2I"/>
+                        <outlet property="fairnessForwardLbl" destination="JON-Ut-xi2" id="dZX-aj-hdJ"/>
+                        <outlet property="fairnessForwardView" destination="dll-45-Hdw" id="1OB-LC-Qaf"/>
                         <outlet property="financialAdvisorView" destination="cQP-bV-nct" id="zds-Mt-sGe"/>
                         <outlet property="financialExpView" destination="bme-Z9-bXE" id="f0Y-c7-teY"/>
                         <outlet property="fiveStarRatingCountLbl" destination="bgL-aa-gCX" id="eWW-4V-VDC"/>

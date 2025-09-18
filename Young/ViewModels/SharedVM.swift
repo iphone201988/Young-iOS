@@ -346,6 +346,8 @@ extension SharedVM {
     @MainActor
     func saveUnsaveVault(postID: String, event: SavedOptions) {
         
+        LoaderUtil.shared.showLoading()
+        
         let endpoint: APIEndpoints = event == .share ? .saveUnsavePost : event == .stream ? .saveUnsavePost : .saveUnsaveVault
         
         let tail = "\(postID)?type=\(event)"
@@ -368,6 +370,11 @@ extension SharedVM {
                     }
                 default: break
                 }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    LoaderUtil.shared.hideLoading()
+                }
+                
             }, receiveValue: { [weak self] response in
                 var respID = ""
                 var respEvent: SavedOptions = .share
@@ -389,6 +396,11 @@ extension SharedVM {
                 
                 self?.updatePostKeyStatus(key: .save, event: event, postID: respID)
                 self?.requestResponse = .success(for: .saveUnsaveVault, msg: response.message ?? "")
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    LoaderUtil.shared.hideLoading()
+                }
+                
             }).store(in: &cancellables)
     }
     
@@ -1216,6 +1228,8 @@ extension SharedVM {
     @MainActor
     func reshare(id: String) {
         
+        LoaderUtil.shared.showLoading()
+        
         let requestParams = APIRequestParams(
             endpoint: .reshare,
             methodType: .put,
@@ -1234,8 +1248,18 @@ extension SharedVM {
                     }
                 default: break
                 }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    LoaderUtil.shared.hideLoading()
+                }
+                
             }, receiveValue: { [weak self] response in
                 self?.requestResponse = .success(for: .reshare, msg: response.message ?? "")
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    LoaderUtil.shared.hideLoading()
+                }
+                
             }).store(in: &cancellables)
     }
     

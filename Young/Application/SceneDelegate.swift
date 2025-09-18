@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         if !accessToken.isEmpty {
-            //SharedMethods.shared.navigateTo2FA()
+            SharedMethods.shared.navigateTo2FA()
             if let vc = AppStoryboards.menus.controller(HomeVC.self) {
                 SharedMethods.shared.navigateToRootVC(rootVC: vc)
             }

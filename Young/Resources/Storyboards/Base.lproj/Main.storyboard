@@ -20,17 +20,44 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientBG" translatesAutoresizingMaskIntoConstraints="NO" id="VVK-QH-JDD">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="902"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Zzt-Aa-xHt">
-                                <rect key="frame" x="20" y="400.66666666666669" width="353" height="100.66666666666669"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ue-1O-AyF">
+                                <rect key="frame" x="0.0" y="387.33333333333331" width="393" height="127.33333333333331"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Young" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0C-7A-sFv">
-                                        <rect key="frame" x="0.0" y="0.0" width="353" height="62.333333333333336"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="8VP-kc-ppw">
+                                        <rect key="frame" x="149" y="0.0" width="95" height="98"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="98" id="ElB-4E-oGA"/>
+                                            <constraint firstAttribute="width" constant="95" id="cTA-8o-NhX"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Building the Future of Finance Together" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCr-cb-GKn">
+                                        <rect key="frame" x="0.0" y="108" width="393" height="19.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="fCr-cb-GKn" firstAttribute="top" secondItem="8VP-kc-ppw" secondAttribute="bottom" constant="10" id="Fxp-0h-jSZ"/>
+                                    <constraint firstItem="fCr-cb-GKn" firstAttribute="leading" secondItem="5ue-1O-AyF" secondAttribute="leading" id="LKA-EB-0Sn"/>
+                                    <constraint firstItem="fCr-cb-GKn" firstAttribute="centerX" secondItem="8VP-kc-ppw" secondAttribute="centerX" id="b0s-Ma-Oua"/>
+                                    <constraint firstItem="8VP-kc-ppw" firstAttribute="top" secondItem="5ue-1O-AyF" secondAttribute="top" id="bTG-Lc-J2w"/>
+                                    <constraint firstAttribute="bottom" secondItem="fCr-cb-GKn" secondAttribute="bottom" id="leW-kE-tWw"/>
+                                    <constraint firstItem="8VP-kc-ppw" firstAttribute="centerX" secondItem="5ue-1O-AyF" secondAttribute="centerX" id="t3E-pf-SUU"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Zzt-Aa-xHt">
+                                <rect key="frame" x="20" y="451" width="353" height="0.0"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Young" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0C-7A-sFv">
+                                        <rect key="frame" x="0.0" y="0.0" width="559.66666666666663" height="0.0"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="52"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSH-b5-YCC">
-                                        <rect key="frame" x="0.0" y="62.333333333333314" width="353" height="38.333333333333343"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSH-b5-YCC">
+                                        <rect key="frame" x="0.0" y="0.0" width="559.66666666666663" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -105,6 +132,8 @@
                         <viewLayoutGuide key="safeArea" id="LwA-Hc-br5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="5ue-1O-AyF" firstAttribute="centerX" secondItem="LwA-Hc-br5" secondAttribute="centerX" id="1JZ-me-Hdi"/>
+                            <constraint firstItem="5ue-1O-AyF" firstAttribute="leading" secondItem="LwA-Hc-br5" secondAttribute="leading" id="1Pp-iE-D0m"/>
                             <constraint firstItem="VVK-QH-JDD" firstAttribute="centerY" secondItem="LwA-Hc-br5" secondAttribute="centerY" id="9Uf-jr-VPf"/>
                             <constraint firstItem="0dT-Om-DXW" firstAttribute="leading" secondItem="Zzt-Aa-xHt" secondAttribute="leading" constant="24" id="HYm-cQ-IPO"/>
                             <constraint firstItem="VVK-QH-JDD" firstAttribute="leading" secondItem="LwA-Hc-br5" secondAttribute="leading" id="IIf-Do-n9P"/>
@@ -114,6 +143,7 @@
                             <constraint firstItem="Zzt-Aa-xHt" firstAttribute="centerY" secondItem="VVK-QH-JDD" secondAttribute="centerY" id="g0d-xV-5kY"/>
                             <constraint firstItem="Zzt-Aa-xHt" firstAttribute="leading" secondItem="VVK-QH-JDD" secondAttribute="leading" constant="20" id="kmB-jY-O0e"/>
                             <constraint firstItem="VVK-QH-JDD" firstAttribute="top" secondItem="Oe0-UR-9Zj" secondAttribute="top" id="nZa-gj-3ku"/>
+                            <constraint firstItem="5ue-1O-AyF" firstAttribute="centerY" secondItem="LwA-Hc-br5" secondAttribute="centerY" id="wRX-cm-KmI"/>
                             <constraint firstItem="VVK-QH-JDD" firstAttribute="centerX" secondItem="LwA-Hc-br5" secondAttribute="centerX" id="ytj-DZ-4AX"/>
                         </constraints>
                     </view>
@@ -2196,7 +2226,7 @@ your account</string>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAL-O4-nPU" customClass="TPKeyboardAvoidingScrollView">
-                                <rect key="frame" x="24" y="190" width="345" height="594.00000000000023"/>
+                                <rect key="frame" x="24" y="190" width="345" height="594"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fj-6m-dgU">
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="1116.3333333333333"/>
@@ -6067,6 +6097,7 @@ account.</string>
         <image name="emptyUserPic" width="200" height="200"/>
         <image name="eye" catalog="system" width="128" height="79"/>
         <image name="gradientBG" width="393" height="852"/>
+        <image name="logo" width="95" height="98"/>
         <image name="menu" width="42" height="42"/>
         <image name="scanner" width="257.33334350585938" height="257.33334350585938"/>
         <image name="selectedBox" width="22" height="22"/>

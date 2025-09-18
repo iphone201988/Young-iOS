@@ -102,7 +102,8 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var maritalStatusView: UIStackView!
     @IBOutlet weak var maritalStatusLbl: UILabel!
     @IBOutlet weak var publicSwitch: UISwitch!
-    
+    @IBOutlet weak var fairnessForwardView: UIStackView!
+    @IBOutlet weak var fairnessForwardLbl: UILabel!
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.registerCellFromNib(cellID: OptionWithUnderlineCell.identifier)
@@ -519,15 +520,15 @@ class ProfileVC: UIViewController {
                         self?.heartIcon.isHidden = false
                     }
                     
-//                    let previousStatus = self?.userDetails?.isFollowed ?? false
-//                    let updatedStatus = !previousStatus
-//                    if updatedStatus {
-//                        self?.followUnfollowStatusBtn.setTitle("Unfollow", for: .normal)
-//                        self?.heartIcon.isHidden = false
-//                    } else {
-//                        self?.followUnfollowStatusBtn.setTitle("Follow", for: .normal)
-//                        self?.heartIcon.isHidden = true
-//                    }
+                    //                    let previousStatus = self?.userDetails?.isFollowed ?? false
+                    //                    let updatedStatus = !previousStatus
+                    //                    if updatedStatus {
+                    //                        self?.followUnfollowStatusBtn.setTitle("Unfollow", for: .normal)
+                    //                        self?.heartIcon.isHidden = false
+                    //                    } else {
+                    //                        self?.followUnfollowStatusBtn.setTitle("Follow", for: .normal)
+                    //                        self?.heartIcon.isHidden = true
+                    //                    }
                     
                 case .updateCustomers:
                     Toast.show(message: resp.message ?? "")
@@ -770,6 +771,14 @@ class ProfileVC: UIViewController {
             advisorIcon.isHidden = false
         } else {
             advisorIcon.isHidden = true
+        }
+        
+        if let fairnessForward = userDetails?.fairnessForward {
+            fairnessForwardView.isHidden = false
+            fairnessForwardLbl.text = fairnessForward == true ? "Yes" : "No"
+        } else {
+            fairnessForwardView.isHidden = true
+            fairnessForwardLbl.text = ""
         }
     }
     

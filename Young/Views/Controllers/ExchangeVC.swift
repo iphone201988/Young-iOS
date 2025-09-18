@@ -363,9 +363,14 @@ class ExchangeVC: UIViewController, UITextFieldDelegate {
             title: "Date Posted",
             state: (selectedFilterOption == "Date Posted") ? .on : .off
         ) { [weak self] _ in
+            if self?.selectedFilterOption == "Date Posted" {
+                self?.selectedFilterOption = ""
+            } else {
+                self?.selectedFilterOption = "Date Posted"
+            }
+
             self?.distance = false
             self?.rating = 0
-            self?.selectedFilterOption = "Date Posted"
             self?.updateFilterMenu()
             self?.getPosts(isResetPageNo: true)
         }
@@ -375,7 +380,12 @@ class ExchangeVC: UIViewController, UITextFieldDelegate {
             title: "Distance",
             state: (selectedFilterOption == "Distance") ? .on : .off
         ) { [weak self] _ in
-            self?.selectedFilterOption = "Distance"
+            if self?.selectedFilterOption == "Distance" {
+                self?.selectedFilterOption = ""
+            } else {
+                self?.selectedFilterOption = "Distance"
+            }
+            
             self?.distance = true
             self?.rating = 0
             self?.updateFilterMenu()
@@ -389,8 +399,15 @@ class ExchangeVC: UIViewController, UITextFieldDelegate {
                 title: title,
                 state: (selectedFilterOption == title) ? .on : .off
             ) { [weak self] _ in
-                self?.selectedFilterOption = title
-                self?.rating = star
+                if self?.selectedFilterOption == title {
+                    self?.selectedFilterOption = ""
+                    self?.rating = 0
+                } else {
+                    self?.selectedFilterOption = title
+                    self?.rating = star
+                }
+
+                //self?.rating = star
                 self?.updateFilterMenu()
                 self?.getPosts(isResetPageNo: true)
             }
@@ -409,7 +426,7 @@ class ExchangeVC: UIViewController, UITextFieldDelegate {
         filterOptionsBtn.menu = menu
         filterOptionsBtn.showsMenuAsPrimaryAction = true
     }
-    
+
     fileprivate func updateSortMenu() {
         var options = [String]()
         if selectedSavedOption == .vault {

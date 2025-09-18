@@ -140,6 +140,8 @@ class FinancialInformationVC: UIViewController {
                                              iconButton: businessRevenueBtn)
         
         bindViewModel()
+        
+        occupationTF.autocapitalizationType = .words
     }
     
     // MARK: IB Actions

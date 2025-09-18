@@ -78,6 +78,11 @@ class ProfileDetailsVC: UIViewController {
                                              iconButton: industryBtn)
         
         bindViewModel()
+        
+        // 🔹 Capitalize first letters
+        firstnameTF.autocapitalizationType = .words
+        lastnameTF.autocapitalizationType = .words
+        companyTF.autocapitalizationType = .words
     }
     
     // MARK: IB Actions
