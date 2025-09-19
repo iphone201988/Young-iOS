@@ -947,7 +947,7 @@ class MySharesVC: UIViewController {
         
         params["id"] = isAnotherUserID ?? ""
         
-        viewModel.getPosts(params: params, limit: limit, event: selectedSavedOption, isfetchSavedData: true)
+        viewModel.getPosts(params: params, limit: limit, event: selectedSavedOption, isfetchSavedData: true, isShowLoader: true)
     }
     
     private func getEvents() {

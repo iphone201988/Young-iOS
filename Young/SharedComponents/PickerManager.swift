@@ -20,6 +20,7 @@ class PickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource, UIT
                          with data: [String],
                          iconView: UIImageView? = nil,
                          iconButton: UIButton? = nil,
+                         noNeedToSetDefaultSelection: Bool = false,
                          onSelection: ((String) -> Void)? = nil) {
         
         let picker = UIPickerView()
@@ -35,9 +36,11 @@ class PickerManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource, UIT
         picker.dataSource = self
         
         // Set the default selected value to the first item
-        if let firstValue = data.first {
-            textField.text = firstValue
-            onSelection?(firstValue)
+        if noNeedToSetDefaultSelection == false {
+            if let firstValue = data.first {
+                textField.text = firstValue
+                onSelection?(firstValue)
+            }
         }
     }
     

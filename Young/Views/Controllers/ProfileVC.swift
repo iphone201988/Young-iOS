@@ -3,7 +3,7 @@ import FSCalendar
 import SideMenu
 import Cosmos
 
-class ProfileVC: UIViewController {
+class ProfileVC: UIViewController, UITextFieldDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var profileMainView: UIView!
@@ -104,6 +104,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var publicSwitch: UISwitch!
     @IBOutlet weak var fairnessForwardView: UIStackView!
     @IBOutlet weak var fairnessForwardLbl: UILabel!
+    @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.registerCellFromNib(cellID: OptionWithUnderlineCell.identifier)
@@ -197,6 +198,7 @@ class ProfileVC: UIViewController {
     private var browsedFileData: Data?
     var event: Events = .unspecified
     var isAnotherUserID: String? = nil
+    let maxCharacters = 30
     
     fileprivate var pageNo = 1
     fileprivate var ads = [UserDetails]()
@@ -237,6 +239,18 @@ class ProfileVC: UIViewController {
         mainScrollView.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadContent(_ :)), name: .reloadContent, object: nil)
+        
+        counterLabel.text = "0/\(maxCharacters)"
+        titleTF.delegate = self
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        
+        counterLabel.text = "\(min(updatedText.count, maxCharacters))/\(maxCharacters)"
+        return updatedText.count <= maxCharacters
     }
     
     @objc fileprivate func reloadContent(_ notify: Notification) {

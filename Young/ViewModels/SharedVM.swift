@@ -260,7 +260,12 @@ extension SharedVM {
     func getPosts(params: [String: Any],
                   limit: Int,
                   event: SavedOptions,
-                  isfetchSavedData: Bool = false) {
+                  isfetchSavedData: Bool = false,
+                  isShowLoader: Bool = false) {
+        
+        if isShowLoader {
+            LoaderUtil.shared.showLoading()
+        }
         
         var updatedParams = params
         
@@ -292,6 +297,9 @@ extension SharedVM {
                     }
                 default: break
                 }
+                
+                LoaderUtil.shared.hideLoading()
+                
             }, receiveValue: { [weak self] response in
                 
                 let pageNo = params["page"] as? Int ?? 1
@@ -340,6 +348,8 @@ extension SharedVM {
                 }
                 
                 self?.requestResponse = .success(for: endpoint)
+                
+                LoaderUtil.shared.hideLoading()
             }).store(in: &cancellables)
     }
     
@@ -1394,7 +1404,7 @@ extension SharedVM {
     
     @MainActor
     func getUsers(params: [String: Any], limit: Int) {
-        
+        LoaderUtil.shared.showLoading()
         var updatedParams = params
         
         updatedParams = params.filter{ !("\($0.value)".isEmpty) }
@@ -1417,6 +1427,7 @@ extension SharedVM {
                     }
                 default: break
                 }
+                LoaderUtil.shared.hideLoading()
             }, receiveValue: { [weak self] response in
                 
                 let pageNo = params["page"] as? Int ?? 1
@@ -1434,6 +1445,7 @@ extension SharedVM {
                 self?.usersList = loadedList
                 self?.isUsersListLoading = false
                 self?.requestResponse = .success()
+                LoaderUtil.shared.hideLoading()
             }).store(in: &cancellables)
     }
     

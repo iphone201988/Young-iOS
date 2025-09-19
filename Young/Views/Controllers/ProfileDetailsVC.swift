@@ -83,6 +83,8 @@ class ProfileDetailsVC: UIViewController {
         firstnameTF.autocapitalizationType = .words
         lastnameTF.autocapitalizationType = .words
         companyTF.autocapitalizationType = .words
+        cityTF.autocapitalizationType = .words
+        stateTF.autocapitalizationType = .words
     }
     
     // MARK: IB Actions

@@ -145,7 +145,8 @@ class AdditionalInformationVC: UIViewController {
             seekingView.isHidden = false
             PickerManager.shared.configurePicker(for: seekingTF,
                                                  with: Constants.startUpSeeking,
-                                                 iconButton: seekingBtn) { [weak self] selectedOption in
+                                                 iconButton: seekingBtn,
+                                                 noNeedToSetDefaultSelection: true) { [weak self] selectedOption in
                 if let options = self?.selectedSeekingOptions, !options.contains(selectedOption) {
                     self?.selectedSeekingOptions.append(selectedOption)
                     self?.collectionView.reloadData()
@@ -158,7 +159,8 @@ class AdditionalInformationVC: UIViewController {
             seekingView.isHidden = false
             PickerManager.shared.configurePicker(for: seekingTF,
                                                  with: Constants.startUpSeeking,
-                                                 iconButton: seekingBtn) { [weak self] selectedOption in
+                                                 iconButton: seekingBtn,
+                                                 noNeedToSetDefaultSelection: true) { [weak self] selectedOption in
                 if let options = self?.selectedSeekingOptions, !options.contains(selectedOption) {
                     self?.selectedSeekingOptions.append(selectedOption)
                     self?.collectionView.reloadData()
@@ -172,7 +174,8 @@ class AdditionalInformationVC: UIViewController {
             seekingTitleLbl.text = "Industries Seeking*"
             PickerManager.shared.configurePicker(for: seekingTF,
                                                  with: Constants.startupAndSmallBusinessIndustry,
-                                                 iconButton: seekingBtn) { [weak self] selectedOption in
+                                                 iconButton: seekingBtn,
+                                                 noNeedToSetDefaultSelection: true) { [weak self] selectedOption in
                 if let options = self?.selectedSeekingOptions, !options.contains(selectedOption) {
                     self?.selectedSeekingOptions.append(selectedOption)
                     self?.collectionView.reloadData()
@@ -188,7 +191,8 @@ class AdditionalInformationVC: UIViewController {
             
             PickerManager.shared.configurePicker(for: seekingTF,
                                                  with: Constants.productsOrServicesOffered,
-                                                 iconButton: seekingBtn) { [weak self] selectedOption in
+                                                 iconButton: seekingBtn,
+                                                 noNeedToSetDefaultSelection: true) { [weak self] selectedOption in
                 if let options = self?.selectedSeekingOptions, !options.contains(selectedOption) {
                     self?.selectedSeekingOptions.append(selectedOption)
                     self?.collectionView.reloadData()
@@ -197,7 +201,8 @@ class AdditionalInformationVC: UIViewController {
             
             PickerManager.shared.configurePicker(for: areaOfExpertiseTF,
                                                  with: Constants.productsOrServicesOffered,
-                                                 iconButton: areaOfExpertiseBtn) { [weak self] selectedOption in
+                                                 iconButton: areaOfExpertiseBtn,
+                                                 noNeedToSetDefaultSelection: true) { [weak self] selectedOption in
                 if let options = self?.selectedAreaOfExpertiseOptions, !options.contains(selectedOption) {
                     self?.selectedAreaOfExpertiseOptions.append(selectedOption)
                     self?.areaOfExpertiseCollectionView.reloadData()
@@ -228,21 +233,21 @@ class AdditionalInformationVC: UIViewController {
             
         case .startupAccountRegistration, .smallBusinessAccountRegistration:
             let seeking = userDetails?.seeking ?? ""
-            selectedSeekingOptions = seeking.components(separatedBy: ",")
+            selectedSeekingOptions = seeking.isEmpty ? [] : seeking.components(separatedBy: ",")
             collectionView.reloadData()
             
         case .investorVCAccountRegistration:
             let industriesSeeking = userDetails?.industriesSeeking ?? ""
-            selectedSeekingOptions = industriesSeeking.components(separatedBy: ",")
+            selectedSeekingOptions = industriesSeeking.isEmpty ? [] : industriesSeeking.components(separatedBy: ",")
             collectionView.reloadData()
             
         case .insurance, .financialFirmAccountRegistration:
             let productsOffered = userDetails?.productsOffered ?? ""
-            selectedSeekingOptions = productsOffered.components(separatedBy: ",")
+            selectedSeekingOptions = productsOffered.isEmpty ? [] : productsOffered.components(separatedBy: ",")
             collectionView.reloadData()
             
             let areaOfExpertise = userDetails?.areaOfExpertise ?? ""
-            selectedAreaOfExpertiseOptions = areaOfExpertise.components(separatedBy: ",")
+            selectedAreaOfExpertiseOptions = areaOfExpertise.isEmpty ? [] : areaOfExpertise.components(separatedBy: ",")
             areaOfExpertiseCollectionView.reloadData()
             
         default: break

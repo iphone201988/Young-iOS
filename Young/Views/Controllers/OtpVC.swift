@@ -91,8 +91,8 @@ class OtpVC: UIViewController, UITextFieldDelegate {
 //                        
 //                    default: break
 //                    }
-                    //SharedMethods.shared.pushToWithoutData(destVC: AddLicenseVC.self)
-                    SharedMethods.shared.pushToWithoutData(destVC: AgreementVC.self)
+                    SharedMethods.shared.pushToWithoutData(destVC: AddLicenseVC.self)
+                    //SharedMethods.shared.pushToWithoutData(destVC: AgreementVC.self)
                 } else {
                     let storyboard = AppStoryboards.main.storyboardInstance
                     guard let destVC = storyboard.instantiateViewController(withIdentifier: "CreateNewPasswordVC") as? CreateNewPasswordVC

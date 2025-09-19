@@ -6,6 +6,7 @@ class QRCodeVC: UIViewController {
     @IBOutlet weak var qrCodeImage: UIImageView!
     @IBOutlet weak var secretCodeLbl: UILabel!
     @IBOutlet weak var codeTF: UITextField!
+    @IBOutlet weak var copySecretKey: UIButton!
     
     // MARK: Variables
     private var viewModel = AuthVM()
@@ -49,6 +50,11 @@ class QRCodeVC: UIViewController {
         }
     }
     
+    @IBAction func tappedCopySecretKey(_ sender: UIButton) {
+        UIPasteboard.general.string = secretCodeLbl.text
+        Toast.show(message: "Secret key copied to clipboard")
+    }
+
     // MARK: Shared Methods
     private func bindViewModel() {
         viewModel.$requestResponse.sink { resp in

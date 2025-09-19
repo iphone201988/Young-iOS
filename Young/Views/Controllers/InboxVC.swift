@@ -165,11 +165,24 @@ extension InboxVC: UITableViewDelegate,UITableViewDataSource {
         let chatUsers = inboxChats[sender.tag].chatUsers ?? []
         if let loggedInUserId = UserDefaults.standard[.loggedUserDetails]?._id {
             let userID = chatUsers.first(where: { $0._id != loggedInUserId })?._id ?? ""
+            
+//            let storyboard = AppStoryboards.menus.storyboardInstance
+//            guard let destVC = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as? ProfileVC
+//            else { return }
+//            destVC.isAnotherUserID = userID
+//            SharedMethods.shared.pushTo(destVC: destVC, isAnimated: true)
+            
+            guard let rootViewController = getWindowRootViewController() else { return }
+            guard let topController = getTopViewController(from: rootViewController) else { return }
+            if topController.isKind(of: ProfileVC.self) {
+                return
+            }
             let storyboard = AppStoryboards.menus.storyboardInstance
             guard let destVC = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as? ProfileVC
             else { return }
+            
             destVC.isAnotherUserID = userID
-            SharedMethods.shared.pushTo(destVC: destVC, isAnimated: true)
+            topController.navigationController?.pushViewController(destVC, animated: true)
         }
     }
     

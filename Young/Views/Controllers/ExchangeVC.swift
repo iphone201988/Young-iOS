@@ -114,7 +114,7 @@ class ExchangeVC: UIViewController, UITextFieldDelegate {
                                                name: .changeCategoriesSelection,
                                                object: nil)
     }
-
+    
     @objc fileprivate func changeCategoriesSelection(_ notify: Notification) {
         if let categories = notify.object as? [Categories] {
             selectedCategories = categories
@@ -280,6 +280,10 @@ class ExchangeVC: UIViewController, UITextFieldDelegate {
             sharesPageNo = 1
             streamsPageNo = 1
             vaultsPageNo = 1
+            
+            viewModel.isSharePostsListLastPage = false
+            viewModel.isStreamPostsListLastPage = false
+            viewModel.isVaultsListLastPage = false
         }
         
         switch selectedSavedOption {
@@ -368,7 +372,7 @@ class ExchangeVC: UIViewController, UITextFieldDelegate {
             } else {
                 self?.selectedFilterOption = "Date Posted"
             }
-
+            
             self?.distance = false
             self?.rating = 0
             self?.updateFilterMenu()
@@ -406,7 +410,7 @@ class ExchangeVC: UIViewController, UITextFieldDelegate {
                     self?.selectedFilterOption = title
                     self?.rating = star
                 }
-
+                
                 //self?.rating = star
                 self?.updateFilterMenu()
                 self?.getPosts(isResetPageNo: true)
@@ -426,7 +430,7 @@ class ExchangeVC: UIViewController, UITextFieldDelegate {
         filterOptionsBtn.menu = menu
         filterOptionsBtn.showsMenuAsPrimaryAction = true
     }
-
+    
     fileprivate func updateSortMenu() {
         var options = [String]()
         if selectedSavedOption == .vault {
@@ -613,7 +617,7 @@ extension ExchangeVC: UICollectionViewDataSource,
             default: break
             }
             
-            getPosts()
+            getPosts(isResetPageNo: true)
             
         } else if collectionView == categoriesCollectionView {
             selectedCategories = [Categories.allCases[indexPath.item]]

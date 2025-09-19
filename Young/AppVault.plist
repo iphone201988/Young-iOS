@@ -21,7 +21,7 @@
 	<key>Google_Services_Api_Key</key>
 	<string></string>
 	<key>isConsoleLogsEnable</key>
-	<false/>
+	<true/>
 	<key>App_Environment</key>
 	<dict>
 		<key>Local</key>

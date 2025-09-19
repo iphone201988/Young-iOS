@@ -380,11 +380,9 @@ class FinancialInformationVC: UIViewController {
         
         if event == .financialAdvisorAccountRegistration {
             let selectedServicesProvided = userDetails?.servicesProvided ?? ""
-            if selectedServicesProvided != "" {
-                servicesProvided = selectedServicesProvided.components(separatedBy: ",")
-                options = servicesProvided
-                collectionView.reloadData()
-            }
+            servicesProvided = selectedServicesProvided.isEmpty ? [] : selectedServicesProvided.components(separatedBy: ",")
+            options = servicesProvided
+            collectionView.reloadData()
         }
         
         let investmentAccounts = userDetails?.investmentAccounts ?? false

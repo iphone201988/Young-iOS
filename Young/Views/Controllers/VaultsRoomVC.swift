@@ -279,7 +279,7 @@ class VaultsRoomVC: UIViewController {
                         self?.joinBtn.isHidden = true
                         self?.leaveBtn.isHidden = false
                         
-                        self?.getComments()
+                        //self?.getComments()
                         
                     } else {
                         self?.newCommentTopView.isHidden = true
@@ -288,11 +288,11 @@ class VaultsRoomVC: UIViewController {
                         self?.joinBtn.isHidden = false
                         self?.leaveBtn.isHidden = true
                         
-                        self?.viewModel.comments.removeAll()
-                        self?.pageNoView.isHidden = true
-                        UIView.performWithoutAnimation {
-                            self?.commentsTableView.reloadData()
-                        }
+                        //self?.viewModel.comments.removeAll()
+                        //self?.pageNoView.isHidden = true
+//                        UIView.performWithoutAnimation {
+//                            self?.commentsTableView.reloadData()
+//                        }
                     }
                 } else {
                     self?.populateData()
@@ -476,18 +476,19 @@ class VaultsRoomVC: UIViewController {
             let loggedUserID = UserDefaults.standard[.loggedUserDetails]?._id
             if adminID == loggedUserID {
                 //vaultMoreBtn.isHidden = true
-                getComments()
+               // getComments()
             } else {
                 //vaultMoreBtn.isHidden = false
                 if postDetails?.isMember == true {
                     joinBtn.isHidden = true
                     leaveBtn.isHidden = false
-                    getComments()
+                   // getComments()
                 } else {
                     joinBtn.isHidden = false
                     leaveBtn.isHidden = true
                 }
             }
+            getComments()
         }
         
         if selectedSavedOption == .vault {
