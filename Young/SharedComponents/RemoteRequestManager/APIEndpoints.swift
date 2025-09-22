@@ -40,6 +40,7 @@ enum APIEndpoints: String, Codable, CaseIterable {
     case downloadHistory
     case resetPassword
     case getUploadedMedia
+    case scheduleStreamEvent
 
     public func urlComponent() -> String {
         switch self {
@@ -82,6 +83,7 @@ enum APIEndpoints: String, Codable, CaseIterable {
         case .downloadHistory: return "post/downloadHistory"
         case .resetPassword: return "user/resetPassword"
         case .getUploadedMedia: return "user/getUploadedMedia"
+        case .scheduleStreamEvent: return "/event/scheduleStreamEvent"
         }
     }
 }

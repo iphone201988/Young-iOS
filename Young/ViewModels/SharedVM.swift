@@ -63,6 +63,8 @@ final class SharedVM: ObservableObject {
     
     @Published var mediaData = [MediaData]()
     
+    @Published var addedToCalendar: Int?
+
     // MARK: Shared Variables -
     var cancellables = Set<AnyCancellable>()
     
@@ -1536,4 +1538,34 @@ extension SharedVM {
                 self?.mediaData = data
             }).store(in: &cancellables)
     }
+    
+    @MainActor
+    func scheduleStreamEvent(id: String, event: SavedOptions, index: Int) {
+        
+        let requestParams = APIRequestParams(
+            endpoint: .scheduleStreamEvent,
+            methodType: .put,
+            contentType: .json,
+            remoteRequestTail: id
+        )
+        
+        RemoteRequestManager.shared.dataTask(type: PostModel.self, requestParams: requestParams)
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    switch error {
+                    case .errorMessage(let err):
+                        self?.requestResponse = .failure(err)
+                    default: break
+                    }
+                default: break
+                }
+            }, receiveValue: { response in
+                if self.streamPostsList.indices.contains(index) {
+                    self.streamPostsList[index].isAlreadyAddedToCalendar = true
+                    self.addedToCalendar = index
+                }
+            }).store(in: &cancellables)
+    }
+    
 }

@@ -182,10 +182,27 @@ class ExchangeVC: UIViewController, UITextFieldDelegate {
     }
     
     private func bindViewModel() {
+        
+        viewModel.$addedToCalendar
+            .sink { resp in
+                if let resp {
+                    Toast.show(message: "Stream added to Calendar")
+                    let totalRows = self.savedStreamTableView.numberOfRows(inSection: 0)
+                    if resp <= totalRows {
+                        self.streamPosts[resp].isAlreadyAddedToCalendar = true
+                        self.savedStreamTableView.reloadRows(at: [IndexPath(row: resp, section: 0)],
+                                                             with: .none)
+                    }
+                }
+            }.store(in: &viewModel.cancellables)
+        
         viewModel.$requestResponse.sink { [weak self] resp in
             if resp.isSuccess == true {
                 
-                if resp.request == .saveUnsaveVault || resp.request == .likeDislikePost { return }
+                if resp.request == .saveUnsaveVault ||
+                    resp.request == .likeDislikePost ||
+                    resp.request == .scheduleStreamEvent
+                { return }
                 
                 switch self?.selectedSavedOption {
                 case .share:
@@ -725,6 +742,14 @@ extension ExchangeVC: UITableViewDelegate,UITableViewDataSource {
                                                 link: link)
             }
             
+            cell.tappedAddToCalendar = { [weak self] action, postDetails in
+                if let self = self {
+                    self.viewModel.scheduleStreamEvent(id: postDetails._id ?? "",
+                                                       event: self.selectedSavedOption,
+                                                       index: indexPath.row)
+                }
+            }
+            
             return cell
             
         } else if tableView == savedVaultTableView {
@@ -856,8 +881,7 @@ extension ExchangeVC: UITableViewDelegate,UITableViewDataSource {
         }
     }
     
-    func showFeaturePostAlert(amount: Double,
-                              onConfirm: @escaping () -> Void) {
+    func showFeaturePostAlert(amount: Double, onConfirm: @escaping () -> Void) {
         let message = """
         Your post will be featured on the Home page for 24 hours based on an algorithm.
         

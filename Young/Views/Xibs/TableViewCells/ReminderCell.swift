@@ -12,6 +12,7 @@ class ReminderCell: UITableViewCell {
     @IBOutlet weak var mediaWidth: NSLayoutConstraint!
     @IBOutlet weak var mediaBtn: UIButton!
     @IBOutlet weak var mediaImg: UIImageView!
+    @IBOutlet weak var visibilityModeLbl: UILabel!
     
     // MARK: Variables
     class var identifier: String {
@@ -44,6 +45,12 @@ class ReminderCell: UITableViewCell {
             } else {
                 mediaWidth.constant = 0.0
                 mediaImg.image = nil
+            }
+            
+            if let isPublic = calendarEvent.isPublic, isPublic == true {
+                visibilityModeLbl.text = "Public"
+            } else {
+                visibilityModeLbl.text = "Private"
             }
         }
     }

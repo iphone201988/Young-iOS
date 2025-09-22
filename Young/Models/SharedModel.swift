@@ -60,6 +60,7 @@ struct PostDetails: Codable {
     var isReported: Bool?
     var streamUrl: String?
     var chatId: String?
+    var isAlreadyAddedToCalendar: Bool?
 }
 
 struct UpdatedRow {
@@ -222,7 +223,20 @@ struct Event: Codable {
     var description, file, scheduledDate, type: String?
     var createdAt: String?
     var eventScheduledDate: Date?
-    var isDeleted: Bool?
+    var isDeleted, isPublic: Bool?
+    
+    enum CodingKeys: String, CodingKey {
+        case _id
+        case userId
+        case title
+        case topic
+        case description
+        case file
+        case scheduledDate
+        case type
+        case createdAt
+        case isPublic = "public"
+    }
 }
 
 // MARK: - PaymentCardsModel

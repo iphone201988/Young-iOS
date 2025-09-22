@@ -105,6 +105,7 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var fairnessForwardView: UIStackView!
     @IBOutlet weak var fairnessForwardLbl: UILabel!
     @IBOutlet weak var counterLabel: UILabel!
+    @IBOutlet weak var visibilityModeView: UIView!
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.registerCellFromNib(cellID: OptionWithUnderlineCell.identifier)
@@ -370,16 +371,26 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
             "topic": topicTF.text ?? "",
             "description": descTF.text ?? "",
             "scheduledDate": "\(selectedDate ?? Date())",
-            "type": CalendarEventTypes.own_events.rawValue
-            //"public": publicSwitch.isOn
+            "type": CalendarEventTypes.own_events.rawValue,
+            "public": publicSwitch.isOn
         ] as [String : Any]
         
         viewModel.addCalendarEvent(params: params, fileData: browsedFileData)
+        
+        titleTF.text = ""
+        topicTF.text = Constants.feedTopics.first ?? ""
+        descTF.text = ""
+        publicSwitch.isOn = true
         
         addNewCalendarEvent()
     }
     
     @IBAction func tappedCancel(_ sender: UIButton) {
+        titleTF.text = ""
+        topicTF.text = Constants.feedTopics.first ?? ""
+        descTF.text = ""
+        publicSwitch.isOn = true
+        
         addNewCalendarEvent()
     }
     
@@ -474,8 +485,27 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
         SharedMethods.shared.pushToWithoutData(destVC: EcosystemVC.self, storyboard: .menus, isAnimated: true)
     }
     
+    @IBAction func changeSwitch(_ sender: UISwitch) {
+        
+    }
+    
     // MARK: Shared Methods
     private func bindViewModel() {
+        
+        viewModel.$addedToCalendar
+            .sink { resp in
+                if let resp {
+                    Toast.show(message: "Stream added to Calendar")
+                    let totalRows = self.savedStreamTableView.numberOfRows(inSection: 0)
+                    if resp <= totalRows {
+                        self.streamPosts[resp].isAlreadyAddedToCalendar = true
+                        self.savedStreamTableView.reloadRows(at: [IndexPath(row: resp, section: 0)],
+                                                             with: .none)
+                    }
+                }
+            }.store(in: &viewModel.cancellables)
+        
+        
         viewModel.$particularUserDetails.sink { [weak self] resp in
             if let resp {
                 self?.userDetails = resp
@@ -823,6 +853,7 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
         savedMainView.isHidden = true
         bottomTabsView.isHidden = true
         footerView.isHidden = true
+        visibilityModeView.isHidden = true
     }
     
     fileprivate func hideAllSavedOptionsTableView() {
@@ -842,6 +873,7 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
         uploadFileView.isHidden = !isNew
         submitBtn.isHidden = !isNew
         cancelBtn.isHidden = !isNew
+        visibilityModeView.isHidden = !isNew
         isAddNewEventViewActive = isNew
         if selectedOption == .calendar {
             if isNew {
@@ -1349,12 +1381,43 @@ extension ProfileVC: UITableViewDelegate,UITableViewDataSource {
                 }
             }
             
+            cell.tappedFeature = { [weak self] action, postDetails in
+                if let self = self {
+                    showFeaturePostAlert(amount: 9.99) {
+                        // Handle confirmed payment logic here
+                        
+                    }
+                }
+            }
+            
             return cell
             
         } else if tableView == savedStreamTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: SavedFeedCell.identifier, for: indexPath) as! SavedFeedCell
             cell.savedOption = .stream
             cell.postDetails = streamPosts[indexPath.row]
+            
+            cell.boomsBtn.tag = indexPath.row
+            cell.boomsBtn.addTarget(self, action: #selector(likeDislikePost(_ :)), for: .touchUpInside)
+            
+            cell.savesBtn.tag = indexPath.row
+            cell.savesBtn.addTarget(self, action: #selector(saveUnsavePost(_ :)), for: .touchUpInside)
+            
+            cell.tappedReport = { [weak self] action, postDetails in
+                let storyboard = AppStoryboards.menus.storyboardInstance
+                guard let destVC = storyboard.instantiateViewController(withIdentifier: "ReportUserVC") as? ReportUserVC
+                else { return }
+                destVC.selectedSavedOption = self?.selectedSavedOption
+                destVC.id = postDetails._id ?? ""
+                destVC.delegateExchange = self
+                SharedMethods.shared.pushTo(destVC: destVC, isAnimated: true)
+            }
+            
+            cell.tappedDelete = { [weak self] action, postDetails in
+                if let self = self {
+                    self.viewModel.deletePost(id: postDetails._id ?? "", event: self.selectedSavedOption)
+                }
+            }
             
             cell.tappedShare = { action, postDetails in
                 let movieTitle = postDetails.title ?? ""
@@ -1365,6 +1428,14 @@ extension ProfileVC: UITableViewDelegate,UITableViewDataSource {
                                                 description: description,
                                                 posterImage: poster,
                                                 link: link)
+            }
+            
+            cell.tappedAddToCalendar = { [weak self] action, postDetails in
+                if let self = self {
+                    self.viewModel.scheduleStreamEvent(id: postDetails._id ?? "",
+                                                       event: self.selectedSavedOption,
+                                                       index: indexPath.row)
+                }
             }
             
             return cell
@@ -1712,6 +1783,26 @@ extension ProfileVC: UITableViewDelegate,UITableViewDataSource {
             destVC.delegateExchange = self
             SharedMethods.shared.pushTo(destVC: destVC, isAnimated: true)
         }
+    }
+    
+    func showFeaturePostAlert(amount: Double, onConfirm: @escaping () -> Void) {
+        let message = """
+        Your post will be featured on the Home page for 24 hours based on an algorithm.
+        
+        The payment amount is $\(String(format: "%.2f", amount)). Your saved payment method will be charged automatically.
+        
+        Do you want to proceed?
+        """
+        
+        let alert = UIAlertController(title: "Feature Your Post", message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Confirm & Pay", style: .default, handler: { _ in
+            onConfirm()
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc fileprivate func tapMediaBtn(_ sender: UIButton) {

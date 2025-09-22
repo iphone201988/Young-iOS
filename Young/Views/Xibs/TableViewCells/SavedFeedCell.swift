@@ -59,6 +59,7 @@ class SavedFeedCell: UITableViewCell {
     var tappedDelete: ((UIAction, PostDetails) -> Void)?
     var tappedFeature: ((UIAction, PostDetails) -> Void)?
     var tappedShare: ((UIAction, PostDetails) -> Void)?
+    var tappedAddToCalendar: ((UIAction, PostDetails) -> Void)?
     
     var savedOption: SavedOptions? {
         didSet {
@@ -81,16 +82,23 @@ class SavedFeedCell: UITableViewCell {
             
             switch savedOption {
             case .share:
-                shareImageViewHeight.constant = 231
                 //totalRatingView.isHidden = false
                 //likesCommentsCountBottomSpaciousView.isHidden = false
-                reshareView.isHidden = false
+            
+                moreOptionBtn.isHidden = false
+                shareImageViewHeight.constant = 216 // 231
+                usernameView.isHidden = false
+                //ratingStarsView.isHidden = false
                 
             case .stream:
-                streamTimeLbl.isHidden = false
-                shareImageViewHeight.constant = 347
                 //totalRatingView.isHidden = false
                 //likesCommentsCountBottomSpaciousView.isHidden = false
+                
+                moreOptionBtn.isHidden = false
+                shareImageViewHeight.constant = 216 // 347
+                usernameView.isHidden = false
+                //ratingStarsView.isHidden = false
+                streamStatusIcon.isHidden = false
                 
             case .vault:
                 moreOptionBtn.isHidden = false
@@ -270,14 +278,28 @@ class SavedFeedCell: UITableViewCell {
                 var actions: [UIAction] = [
                     UIAction(title: "Delete") { [weak self] action in
                         self?.tappedDelete?(action, postDetails)
-                    },
-                    UIAction(title: "Feature") { [weak self] action in
-                        self?.tappedFeature?(action, postDetails)
                     }
                 ]
                 
+                if savedOption == .share || exchangeOption == .share {
+                    actions.append(
+                        UIAction(title: "Feature") { [weak self] action in
+                            self?.tappedFeature?(action, postDetails)
+                        }
+                    )
+                } 
+                
                 if let _ = postDetails.scheduleDate {
                     
+                    if postDetails.isAlreadyAddedToCalendar == true {
+                        
+                    } else {
+                        actions.append(
+                            UIAction(title: "Add to Calendar") { [weak self] action in
+                                self?.tappedAddToCalendar?(action, postDetails)
+                            }
+                        )
+                    }
                 } else {
                     if let _ = postDetails.streamUrl {
                         actions.append(
@@ -297,11 +319,11 @@ class SavedFeedCell: UITableViewCell {
                     moreOptionBtn.isHidden = true
                 } else {
                     moreOptionBtn.isHidden = false
-//                    let menu = UIMenu(title: "", children: [
-//                        UIAction(title: "Report") { [weak self] action in
-//                            self?.tappedReport?(action, postDetails)
-//                        }
-//                    ])
+                    //                    let menu = UIMenu(title: "", children: [
+                    //                        UIAction(title: "Report") { [weak self] action in
+                    //                            self?.tappedReport?(action, postDetails)
+                    //                        }
+                    //                    ])
                     
                     var actions: [UIAction] = [
                         UIAction(title: "Report") { [weak self] action in
@@ -310,6 +332,16 @@ class SavedFeedCell: UITableViewCell {
                     ]
                     
                     if let _ = postDetails.scheduleDate {
+                        
+                        if postDetails.isAlreadyAddedToCalendar == true {
+                            
+                        } else {
+                            actions.append(
+                                UIAction(title: "Add to Calendar") { [weak self] action in
+                                    self?.tappedAddToCalendar?(action, postDetails)
+                                }
+                            )
+                        }
                         
                     } else {
                         if let _ = postDetails.streamUrl {

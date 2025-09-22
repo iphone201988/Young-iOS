@@ -162,6 +162,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="QYL-Iy-v35" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="4me-p4-1BG"/>
                     <constraint firstItem="QYL-Iy-v35" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="TtM-eG-Q0B"/>
