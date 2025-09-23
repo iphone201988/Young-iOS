@@ -917,11 +917,11 @@
 				8BFB33F22DBA6DA90059B53A /* AdvertiseVC.swift */,
 				8BF7B91F2DF1A6F500073533 /* AgreementVC.swift */,
 				8B446F752D95642700A89D84 /* BasicDetailsVC.swift */,
+				8B9FF9702E7185EB00DB398F /* ChangePasswordVC.swift */,
 				8BFB33F02DBA61420059B53A /* ContactUsVC.swift */,
 				8B71ACC12D96CF5000E5FEF2 /* CRDVerificationVC.swift */,
 				8BDDCE602D93E71C003D13ED /* CreateAccountVC.swift */,
 				8BDDCE662D93E7A3003D13ED /* CreateNewPasswordVC.swift */,
-				8B9FF9702E7185EB00DB398F /* ChangePasswordVC.swift */,
 				8B24F1F52DBF392A002C1672 /* EcosystemVC.swift */,
 				8B0A52832DBB6B0F00DEC58D /* ExchangeVC.swift */,
 				8BF249F52DB13089002429D4 /* FamilyAndEducationVC.swift */,
@@ -1405,7 +1405,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4;
+				MARKETING_VERSION = 2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.YoungApp.Young;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1454,7 +1454,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4;
+				MARKETING_VERSION = 2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.YoungApp.Young;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
